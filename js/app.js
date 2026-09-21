@@ -27,7 +27,10 @@
     notifBanner: document.getElementById("notif-banner"),
     enableNotifs: document.getElementById("enable-notifs"),
     simulatePromo: document.getElementById("simulate-promo"),
+    tipCard: document.getElementById("tip-card"),
   };
+
+  const sessionTip = TIPS[Math.floor(Math.random() * TIPS.length)];
 
   function loadState() {
     try {
@@ -149,11 +152,22 @@
     return allPromos()
       .filter((promo) => state.selectedStores.includes(promo.storeId))
       .filter((promo) => state.selectedProducts.includes(promo.productId) || matchesCustomProduct(promo))
-      .sort((a, b) => discountPct(b) - discountPct(a));
+      .sort((a, b) => Number(isProfitable(a)) < Number(isProfitable(b)) ? 1 : Number(isProfitable(a)) > Number(isProfitable(b)) ? -1 : discountPct(b) - discountPct(a));
   }
 
   function discountPct(promo) {
     return Math.round((1 - promo.newPrice / promo.oldPrice) * 100);
+  }
+
+  // What the product really costs once a cashback offer is stacked on top of
+  // the in-store discount — can go negative (you're paid to buy it).
+  function netCost(promo) {
+    if (promo.cashbackAmount == null) return promo.newPrice;
+    return Math.round((promo.newPrice - promo.cashbackAmount) * 100) / 100;
+  }
+
+  function isProfitable(promo) {
+    return promo.cashbackAmount != null && netCost(promo) <= 0;
   }
 
   function storeName(id) {
@@ -174,6 +188,9 @@
         ? new Date(promo.validUntil).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })
         : null;
 
+      const cost = netCost(promo);
+      const profitable = isProfitable(promo);
+
       li.innerHTML = `
         <div class="alert-top">
           <span class="alert-store">${storeName(promo.storeId)}${unread ? '<span class="badge-new">Nouveau</span>' : ""}</span>
@@ -184,6 +201,16 @@
           <span class="price-old">${promo.oldPrice.toFixed(2)} €</span>
           <span class="price-new">${promo.newPrice.toFixed(2)} €</span>
         </div>
+        ${
+          promo.cashbackAmount != null
+            ? `<p class="cashback-line">+ Cashback ${escapeHtml(promo.cashbackApp)} : ${promo.cashbackAmount.toFixed(2)} €</p>
+               <p class="net-cost ${profitable ? "profit" : ""}">${
+                 profitable
+                   ? `🎉 Payé ${Math.abs(cost).toFixed(2)} € pour l'acheter`
+                   : `Revient à ${cost.toFixed(2)} € une fois le cashback reçu`
+               }</p>`
+            : ""
+        }
         ${validUntil ? `<p class="alert-meta">Valable jusqu'au ${validUntil}</p>` : ""}
       `;
       els.alertsList.appendChild(li);
@@ -273,6 +300,7 @@
     if (name === "alerts") {
       renderAlerts();
       updateNotifBanner();
+      if (els.tipCard) els.tipCard.textContent = "💡 " + sessionTip;
     }
   }
 

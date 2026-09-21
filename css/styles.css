@@ -269,6 +269,31 @@ main#app {
   margin-top: 0.4rem;
 }
 
+.cashback-line {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.net-cost {
+  margin: 0.2rem 0 0;
+  font-weight: 600;
+}
+
+.net-cost.profit {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.tip-card {
+  background: #fff8e6;
+  border: 1px solid #f0dfa8;
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
 .demo-tools {
   margin-top: 2rem;
   padding-top: 1rem;

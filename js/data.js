@@ -36,9 +36,10 @@ const PROMOS = [
   { id: "p2", storeId: "lidl", productId: "cafe", title: "Café moulu 250g", oldPrice: 3.5, newPrice: 2.1, validUntil: "2026-09-30" },
   { id: "p3", storeId: "leclerc", productId: "couches", title: "Couches taille 4, paquet géant", oldPrice: 14.9, newPrice: 9.9, validUntil: "2026-09-27" },
   { id: "p4", storeId: "auchan", productId: "pates", title: "Pâtes penne 1kg, lot de 3", oldPrice: 4.5, newPrice: 2.7, validUntil: "2026-10-02" },
-  { id: "p5", storeId: "intermarche", productId: "menager", title: "Lessive liquide 3L", oldPrice: 11.0, newPrice: 6.5, validUntil: "2026-09-29" },
+  { id: "p5", storeId: "intermarche", productId: "menager", title: "Lessive liquide 3L", oldPrice: 11.0, newPrice: 6.5, validUntil: "2026-09-29", cashbackApp: "iGraal", cashbackAmount: 7.0 },
   { id: "p6", storeId: "superu", productId: "fruits-legumes", title: "Pommes Golden 1kg", oldPrice: 2.8, newPrice: 1.5, validUntil: "2026-09-25" },
   { id: "p7", storeId: "casino", productId: "hygiene", title: "Gel douche, lot de 2", oldPrice: 6.0, newPrice: 3.6, validUntil: "2026-10-01" },
+  { id: "p15", storeId: "carrefour", productId: "hygiene", title: "Dentifrice blancheur 75ml", oldPrice: 3.2, newPrice: 0.99, validUntil: "2026-09-28", cashbackApp: "Shopmium", cashbackAmount: 1.5 },
   { id: "p8", storeId: "monoprix", productId: "surgeles", title: "Légumes surgelés 1kg", oldPrice: 3.2, newPrice: 1.9, validUntil: "2026-09-26" },
   { id: "p9", storeId: "aldi", productId: "boissons", title: "Jus d'orange 1L, lot de 4", oldPrice: 5.6, newPrice: 3.4, validUntil: "2026-09-30" },
   { id: "p10", storeId: "cora", productId: "petit-dejeuner", title: "Céréales chocolat 500g", oldPrice: 4.3, newPrice: 2.5, validUntil: "2026-09-28" },
@@ -56,4 +57,13 @@ const SIMULATED_TITLE_TEMPLATES = [
   "Prix cassé sur {product}",
   "{product} en promotion cette semaine",
   "Bon plan : {product}",
+];
+
+// Timing/cashback advice surfaced in the alerts view, drawn from how
+// experienced deal-hunters actually operate (see README).
+const TIPS = [
+  "Évitez de faire toutes vos courses du mois d'un coup en début de mois : les offres changent chaque semaine, et les 3 autres semaines sont parfois bien plus intéressantes.",
+  "Le week-end, les magasins ajoutent souvent des bons d'achat qui se cumulent avec les promos en cours : ça vaut le coup de regarder avant d'y aller.",
+  "Ouvrez aussi une appli de cashback (iGraal, Shopmium, Quoty...) en plus de celle du magasin : cumulée à une promo, elle peut rendre un produit gratuit, voire rentable.",
+  "Sur certains produits (lessive, hygiène...), le cumul promo + cashback rembourse parfois 70 à 100% du prix, voire plus : vous êtes littéralement payé pour acheter.",
 ];

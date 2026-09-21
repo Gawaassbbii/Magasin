@@ -26,6 +26,24 @@ Les préférences sont mémorisées (`localStorage`) : on ne les ressaisit
 jamais. Un bouton "Simuler une nouvelle promo" sert uniquement à la démo,
 pour montrer l'effet d'une alerte qui arrive.
 
+### Le cumul promo + cashback
+
+Un reportage sur les chasseurs de bons plans (dont est parti ce projet)
+explique le vrai levier des grosses économies : le cumul d'une promo en
+magasin avec une offre de cashback complémentaire (iGraal, Shopmium,
+Quoty...). Sur certains produits (lessive, hygiène...), ça peut rembourser
+70 à 100% du prix, voire plus — on est alors payé pour acheter.
+
+Le concept modélise ça : une promo peut porter un `cashbackApp` et un
+`cashbackAmount` (`js/data.js`), et l'alerte affiche alors le "prix réel"
+une fois le cashback déduit, avec un badge "🎉 Payé X € pour l'acheter"
+quand il devient négatif. Ces offres remontent en premier dans la liste.
+
+Le reportage donnait aussi des conseils de timing, repris comme astuces
+tournantes au-dessus des alertes : éviter de faire toutes ses courses du
+mois d'un coup en début de mois (les offres changent chaque semaine), et
+surveiller le week-end où des bons d'achat se cumulent souvent aux promos.
+
 ### Essayer en local
 
 ```bash
