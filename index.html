@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Magasin — Alertes promos</title>
+<meta name="description" content="Choisissez vos magasins et vos produits, on vous prévient quand il y a une promo." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>🛒 Magasin</h1>
+    <p class="tagline">Choisissez vos magasins et vos produits. On s'occupe de repérer les promos.</p>
+    <button id="settings-btn" class="icon-btn" hidden aria-label="Modifier mes préférences">⚙️ Modifier mes choix</button>
+  </header>
+
+  <main id="app">
+
+    <!-- Step 1: choose stores -->
+    <section id="step-stores" class="step" aria-labelledby="step-stores-title">
+      <h2 id="step-stores-title">1. Vos magasins habituels</h2>
+      <p class="hint">Sélectionnez un ou plusieurs magasins où vous faites vos courses.</p>
+      <div id="store-list" class="chip-grid" role="group" aria-label="Liste des magasins"></div>
+      <button id="to-step-products" class="primary-btn" disabled>Continuer</button>
+    </section>
+
+    <!-- Step 2: choose products -->
+    <section id="step-products" class="step" hidden aria-labelledby="step-products-title">
+      <h2 id="step-products-title">2. Les produits qui vous intéressent</h2>
+      <p class="hint">Sélectionnez les catégories de produits que vous achetez régulièrement.</p>
+      <div id="product-list" class="chip-grid" role="group" aria-label="Liste des produits"></div>
+      <div class="custom-product-row">
+        <label for="custom-product">Un produit précis à surveiller ?</label>
+        <div class="custom-product-input">
+          <input type="text" id="custom-product" placeholder="ex. Couches taille 4" />
+          <button id="add-custom-product" type="button">Ajouter</button>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button id="back-to-stores" class="secondary-btn">Retour</button>
+        <button id="to-alerts" class="primary-btn" disabled>Voir mes alertes</button>
+      </div>
+    </section>
+
+    <!-- Step 3: alerts dashboard -->
+    <section id="step-alerts" class="step" hidden aria-labelledby="step-alerts-title">
+      <div class="alerts-header">
+        <h2 id="step-alerts-title">Vos alertes promos</h2>
+        <button id="mark-all-read" class="text-btn">Tout marquer comme lu</button>
+      </div>
+
+      <div id="notif-banner" class="notif-banner" hidden>
+        <span>Recevoir une alerte même quand l'onglet est fermé ?</span>
+        <button id="enable-notifs" class="secondary-btn">Activer les notifications</button>
+      </div>
+
+      <p id="no-alerts" class="hint" hidden>Aucune promo pour le moment sur vos sélections. Revenez plus tard, on garde un œil pour vous.</p>
+
+      <ul id="alerts-list" class="alerts-list" aria-live="polite"></ul>
+
+      <div class="demo-tools">
+        <p class="hint small">Outil de démonstration : simule l'arrivée d'une nouvelle promo correspondant à vos critères.</p>
+        <button id="simulate-promo" class="secondary-btn">Simuler une nouvelle promo</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>Concept d'application — vos préférences restent sur votre appareil.</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
