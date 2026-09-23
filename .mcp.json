@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://api.parse.bot/mcp",
       "headers": {
-        "X-API-Key": "${PARSEBOT_API_KEY}"
+        "X-API-Key": "${pmx_1bfa20a9e673b044cd5de232fcad4c7d}"
       }
     }
   }
